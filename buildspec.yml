@@ -18,11 +18,9 @@ phases:
   post_build:
     commands:
       - mkdir -p bundle
-      - JAR_FILE=$(ls -1 target/*.jar | grep -v '\-plain\.jar' | head -n 1)
-      - echo "Using JAR file: ${JAR_FILE}"
-      - cp "${JAR_FILE}" bundle/app.jar
-      - printf "web: java -jar app.jar\n" > bundle/Procfile
-      - cd bundle && zip -r ../deploy.zip .
+      - bash -c "JAR_FILE=$(ls -1 target/*.jar | grep -v plain | head -n 1) && echo Using JAR: $JAR_FILE && cp $JAR_FILE bundle/app.jar"
+      - bash -c "echo 'web: java -jar app.jar' > bundle/Procfile"
+      - bash -c "cd bundle && zip -r ../deploy.zip ."
 
 artifacts:
   files:
