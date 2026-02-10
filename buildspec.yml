@@ -7,12 +7,12 @@ phases:
 
   pre_build:
     commands:
-      - ./mvnw -v
+      - bash ./mvnw -v
 
   build:
     commands:
-      - ./mvnw -q test
-      - ./mvnw -q package -DskipTests=true
+      - bash ./mvnw -q test
+      - bash ./mvnw -q package -DskipTests=true
 
   post_build:
     commands:
