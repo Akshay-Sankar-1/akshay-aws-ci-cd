@@ -19,7 +19,7 @@ phases:
     commands:
       - mkdir -p bundle
       - cp target/*.jar bundle/app.jar
-      - echo "web: java -jar app.jar" > bundle/Procfile
+      - 'printf "web: java -jar app.jar\n" > bundle/Procfile'
       - cd bundle && zip -r ../deploy.zip .
 
 artifacts:
