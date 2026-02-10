@@ -7,7 +7,6 @@ phases:
 
   pre_build:
     commands:
-      - chmod +x mvnw
       - ./mvnw -v
 
   build:
@@ -17,11 +16,12 @@ phases:
 
   post_build:
     commands:
+      - rm -rf bundle
       - mkdir -p bundle
-      - cp target/*.jar bundle/app.jar
-      - 'printf "web: java -jar app.jar\n" > bundle/Procfile'
-      - cd bundle && zip -r ../deploy.zip .
+      - cp target/*.jar bundle/application.jar
+      - 'printf "web: java -jar application.jar\n" > bundle/Procfile'
 
 artifacts:
+  base-directory: bundle
   files:
-    - deploy.zip
+    - '**/*'
